@@ -19,3 +19,5 @@ catalog-v001.xml
 lib/JRDFox.jar
 lib/libCppRDFox-logAPI.dylib
 lib/libCppRDFox.dylib
+lib/libCppRDFox-logAPI.so
+lib/libCppRDFox.so

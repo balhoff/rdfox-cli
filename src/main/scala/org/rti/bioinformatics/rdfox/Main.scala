@@ -21,7 +21,7 @@ object Main extends CliMain[Unit](
   var threadsOpt = opt[Option[Int]](name = "threads", description = "number of threads for parallel processing")
   var exportFileOpt = opt[Option[File]](name = "export", description = "export RDF triples to Turtle file")
   var reason = opt[Boolean](default = false, description = "apply reasoning after importing rules and data")
-  var dataFolderOpt = opt[Option[File]](name = "data", description = "Folder of RDF data files in Turtle format")
+  var dataFolderOpt = opt[Option[File]](name = "data", description = "folder of RDF data files in Turtle format")
 
   def run: Unit = {
     import Util.time

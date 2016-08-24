@@ -18,7 +18,8 @@ resolvers += Resolver.mavenLocal
 
 javaOptions += "-Xmx12G"
 
-// Download JRDFox.jar and the associated native library for your platform
+// Download JRDFox.jar and the associated native libraries for your platform
+// (e.g. libCppRDFox.*, libCppRDFox-logAPI.*)
 // from https://www.cs.ox.ac.uk/isg/tools/RDFox/otherOS_download.html
 // Place these in `lib`
 
