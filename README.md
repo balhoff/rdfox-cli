@@ -17,3 +17,20 @@ To build the command-line executable, run:
 `sbt stage`
 
 You will find executables for Unix and Windows in `target/universal/stage/bin/`. These depend on the libraries in `target/universal/stage/lib`.
+
+## Usage
+
+```
+Usage
+
+ rdfox-cli [options] : a command line wrapper for RDFox
+
+Options
+
+   --data     : Folder of RDF data files in Turtle format
+   --export   : export RDF triples to Turtle file
+   --ontology : OWL ontology to import into reasoning rules
+   --reason   : apply reasoning after importing rules and data
+   --store    : save the current state of the store to file
+   --threads  : number of threads for parallel processing
+```
