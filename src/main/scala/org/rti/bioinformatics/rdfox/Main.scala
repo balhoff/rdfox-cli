@@ -38,7 +38,11 @@ object Main extends CliMain[Unit](
         dataStore.importOntology(ontology, UpdateType.Add, true, true)
       }
     }
-    threadsOpt.foreach(dataStore.setNumberOfThreads)
+    threadsOpt.foreach { threadCount =>
+      time("Set number of threads") {
+        dataStore.setNumberOfThreads(threadCount)
+      }
+    }
     dataFolderOpt.foreach { dataFolder =>
       val datafiles = FileUtils.listFiles(dataFolder, null, true).asScala.filterNot(_.getName == "catalog-v001.xml").filter(_.isFile).toArray
       time("Imported data files") {
