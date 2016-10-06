@@ -16,9 +16,10 @@ scalacOptions in Test ++= Seq("-Yrangepos")
 
 resolvers += Resolver.mavenLocal
 
-javaOptions += "-Xmx12G"
+javaOptions += "-Xmx16G"
 
-// Download JRDFox.jar and the associated native library for your platform
+// Download JRDFox.jar and the associated native libraries for your platform
+// (e.g. libCppRDFox.*, libCppRDFox-logAPI.*)
 // from https://www.cs.ox.ac.uk/isg/tools/RDFox/otherOS_download.html
 // Place these in `lib`
 
@@ -31,6 +32,10 @@ libraryDependencies ++= {
     "org.scalaz"                  %% "scalaz-core"           % "7.2.1",
     "com.typesafe.scala-logging"  %% "scala-logging"         % "3.4.0",
     "ch.qos.logback"              %  "logback-classic"       % "1.1.7",
-    "org.codehaus.groovy"         %  "groovy-all"            % "2.4.6"
+    "org.codehaus.groovy"         %  "groovy-all"            % "2.4.6",
+    "org.openrdf.sesame"          %  "sesame-model"          % "2.7.16",
+    "org.openrdf.sesame"          %  "sesame-sail"           % "2.7.16",
+    "org.openrdf.sesame"          %  "sesame-rio-api"        % "2.7.16",
+    "org.openrdf.sesame"          %  "sesame-rio-turtle"     % "2.7.16"
   )
 }
