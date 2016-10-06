@@ -22,6 +22,7 @@ import uk.ac.ox.cs.JRDFox.store.DataStore.EqualityAxiomatizationType
 import uk.ac.ox.cs.JRDFox.store.DataStore.UpdateType
 import uk.ac.ox.cs.JRDFox.store.Parameters
 
+
 object Main extends CliMain[Unit](
   name = "rdfox-cli",
   description = "a command line wrapper for RDFox") {
