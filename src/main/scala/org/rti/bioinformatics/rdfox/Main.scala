@@ -22,7 +22,6 @@ import uk.ac.ox.cs.JRDFox.store.DataStore.EqualityAxiomatizationType
 import uk.ac.ox.cs.JRDFox.store.DataStore.UpdateType
 import uk.ac.ox.cs.JRDFox.store.Parameters
 
-
 object Main extends CliMain[Unit](
   name = "rdfox-cli",
   description = "a command line wrapper for RDFox") {
@@ -54,11 +53,13 @@ object Main extends CliMain[Unit](
         dataStore.importOntology(ontology, UpdateType.Add, true, false)
       }
     }
+
     threadsOpt.foreach { threadCount =>
       time("Set number of threads") {
         dataStore.setNumberOfThreads(threadCount)
       }
     }
+
     dataFolderOpt.foreach { dataFolder =>
       val datafiles = FileUtils.listFiles(dataFolder, null, true).asScala
         .filterNot(_.getName == "catalog-v001.xml")
@@ -68,16 +69,19 @@ object Main extends CliMain[Unit](
         dataStore.importFiles(datafiles)
       }
     }
+
     if (reason) {
       time("Applied reasoning") {
         dataStore.applyReasoning()
       }
     }
+
     storeFileOpt.foreach { storeFile =>
       time("Saved database to file") {
         dataStore.save(storeFile)
       }
     }
+
     exportFileOpt.foreach { exportFile =>
       time("Exported data to Turtle") {
         val prefixes = Prefixes.DEFAULT_IMMUTABLE_INSTANCE
@@ -87,7 +91,7 @@ object Main extends CliMain[Unit](
 SELECT DISTINCT ?s ?p ?o 
 WHERE {
   ?s ?p ?o . 
-  FILTER(isIRI(?s) || isBlank(?s))
+  FILTER(!isLiteral(?s))
   FILTER(isIRI(?p)) 
   FILTER((?p != owl:sameAs) || (?s != ?o))
 }""", prefixes, parameters)
@@ -99,6 +103,7 @@ WHERE {
         triplesOutput.close()
       }
     }
+
     dataStore.dispose()
   }
 
