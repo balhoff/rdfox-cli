@@ -27,10 +27,11 @@ Usage
 
 Options
 
-   --data     : Folder of RDF data files in Turtle format
-   --export   : export RDF triples to Turtle file
-   --ontology : OWL ontology to import into reasoning rules
-   --reason   : apply reasoning after importing rules and data
-   --store    : save the current state of the store to file
-   --threads  : number of threads for parallel processing
+   --data          : folder of RDF data files in Turtle format
+   --export        : export RDF triples to Turtle file
+   --inferred-only : export inferred triples only
+   --ontology      : OWL ontology to import into reasoning rules
+   --reason        : apply reasoning after importing rules and data
+   --store         : save the current state of the store to file
+   --threads       : number of threads for parallel processing
 ```
