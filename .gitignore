@@ -16,8 +16,4 @@ test-output/
 bin/
 catalog-v001.xml
 .cache-tests
-lib/JRDFox.jar
-lib/libCppRDFox-logAPI.dylib
-lib/libCppRDFox.dylib
-lib/libCppRDFox-logAPI.so
-lib/libCppRDFox.so
+lib/*
