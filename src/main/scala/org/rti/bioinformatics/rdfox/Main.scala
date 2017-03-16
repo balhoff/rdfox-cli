@@ -5,10 +5,10 @@ import java.io.File
 import java.io.FileOutputStream
 import java.util.HashMap
 import java.util.HashSet
+import java.util.concurrent.{Executors, TimeUnit, TimeoutException}
 
 import scala.collection.JavaConverters._
 import scala.io.Source
-
 import org.apache.commons.io.FileUtils
 import org.backuity.clist._
 import org.openrdf.rio.RDFFormat
@@ -16,11 +16,12 @@ import org.openrdf.rio.Rio
 import org.semanticweb.owlapi.apibinding.OWLManager
 import org.semanticweb.owlapi.model.IRI
 import org.semanticweb.owlapi.model.OWLAxiom
-
 import uk.ac.ox.cs.JRDFox.Prefixes
 import uk.ac.ox.cs.JRDFox.store.DataStore
 import uk.ac.ox.cs.JRDFox.store.DataStore.QueryDomain
 import uk.ac.ox.cs.JRDFox.store.DataStore.UpdateType
+
+import scala.concurrent.duration.Duration
 
 object Main extends CliMain[Unit](
   name = "rdfox-cli",
@@ -118,7 +119,21 @@ WHERE {
       }
     }
 
-    dataStore.dispose()
+    val disposedFuture = Executors.newSingleThreadExecutor().submit(new Runnable {
+      override def run(): Unit = {
+        dataStore.dispose()
+      }
+    })
+
+    try {
+      disposedFuture.get(600, TimeUnit.SECONDS)
+    } catch {
+      case e:TimeoutException => {
+        println("Disposing took too long!")
+        System.exit(0)
+      }
+    }
+
   }
 
   def time[T](action: String)(f: => T): T = {
