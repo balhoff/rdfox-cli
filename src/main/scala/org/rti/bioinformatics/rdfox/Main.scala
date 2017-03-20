@@ -7,6 +7,11 @@ import java.util.HashMap
 import java.util.HashSet
 
 import scala.collection.JavaConverters._
+import scala.concurrent.Await
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
+import scala.concurrent.TimeoutException
+import scala.concurrent.duration._
 import scala.io.Source
 
 import org.apache.commons.io.FileUtils
@@ -118,7 +123,15 @@ WHERE {
       }
     }
 
-    dataStore.dispose()
+    // dispose can take quite a while and we probably don't really need to clean up before exiting
+    try {
+      Await.ready(Future(dataStore.dispose()), 10.minutes)
+    } catch {
+      case e: TimeoutException =>
+        println("Disposing took too long!")
+        System.exit(0)
+    }
+
   }
 
   def time[T](action: String)(f: => T): T = {

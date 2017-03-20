@@ -4,7 +4,7 @@ organization  := "org.rti.bioinformatics"
 
 name          := "rdfox-cli"
 
-version       := "0.0.2"
+version       := "0.0.3-SNAPSHOT"
 
 scalaVersion  := "2.11.8"
 
@@ -18,10 +18,9 @@ resolvers += Resolver.mavenLocal
 
 javaOptions += "-Xmx16G"
 
-// Download JRDFox.jar and the associated native libraries for your platform
-// (e.g. libCppRDFox.*, libCppRDFox-logAPI.*)
+// Download JRDFox.jar for your platform
 // from https://www.cs.ox.ac.uk/isg/tools/RDFox/otherOS_download.html
-// Place these in `lib`
+// Place in `lib`
 
 libraryDependencies ++= {
   Seq(
