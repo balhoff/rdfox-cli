@@ -1,5 +1,4 @@
 enablePlugins(JavaAppPackaging)
-enablePlugins(UniversalPlugin)
 
 organization  := "org.rti.bioinformatics"
 
