@@ -1,4 +1,5 @@
 enablePlugins(JavaAppPackaging)
+enablePlugins(UniversalPlugin)
 
 organization  := "org.rti.bioinformatics"
 
@@ -17,6 +18,8 @@ scalacOptions in Test ++= Seq("-Yrangepos")
 resolvers += Resolver.mavenLocal
 
 javaOptions += "-Xmx16G"
+
+packageName in Universal := s"${name.value}"
 
 // Download JRDFox.jar for your platform
 // from https://www.cs.ox.ac.uk/isg/tools/RDFox/otherOS_download.html
